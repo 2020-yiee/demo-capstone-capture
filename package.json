@@ -1,0 +1,15 @@
+{
+  "name": "demo-screen-capture",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test:update-path": "node tests/update-path.js"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "capture-website": "^0.8.1",
+    "jsdom": "^16.1.0"
+  }
+}
