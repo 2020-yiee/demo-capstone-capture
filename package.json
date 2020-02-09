@@ -6,10 +6,10 @@
   "scripts": {
     "test:update-path": "node tests/update-path.js"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "capture-website": "^0.8.1",
-    "jsdom": "^16.1.0"
+    "jsdom": "^16.1.0",
+    "puppeteer": "^2.1.1"
   }
 }
