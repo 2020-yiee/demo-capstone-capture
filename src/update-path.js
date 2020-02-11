@@ -16,32 +16,35 @@ const updateAbsolutePath = async (hostSite, filePath, outputPath) => {
         const { name, value } = node.attributes[i];
         // do stuff...
         var urlPattern = /^(?:\/|[a-z]+:\/\/)/;
-        if(!urlPattern.test(node.attributes[i].value)){
-          node.attributes[i].value = absolute(hostSite,node.attributes[i].value);
+        if (!urlPattern.test(node.attributes[i].value)) {
+          //node.attributes[i].value = absolute(hostSite, node.attributes[i].value);
+          node.attributes[i].value = new URL(node.attributes[i].value, hostSite).href;
         }
       }
     }
   });
   // save file to outputPath
   // ...
-  jsdom.writeFile(outputPath,window.document.documentElement.outerHTML);
+  jsdom.writeFile(outputPath, window.document.documentElement.outerHTML);
   console.log('Done');
 };
 
+
+/*
 function absolute(base, relative) {
   var stack = base.split("/"),
-      parts = relative.split("/");
+    parts = relative.split("/");
   stack.pop(); // remove current file name (or empty string)
-               // (omit if "base" is the current folder without trailing slash)
-  for (var i=0; i<parts.length; i++) {
-      if (parts[i] == ".")
-          continue;
-      if (parts[i] == "..")
-          stack.pop();
-      else
-          stack.push(parts[i]);
+  // (omit if "base" is the current folder without trailing slash)
+  for (var i = 0; i < parts.length; i++) {
+    if (parts[i] == ".")
+      continue;
+    if (parts[i] == "..")
+      stack.pop();
+    else
+      stack.push(parts[i]);
   }
   return stack.join("/");
-}
+}*/
 
 module.exports = { updateAbsolutePath };
